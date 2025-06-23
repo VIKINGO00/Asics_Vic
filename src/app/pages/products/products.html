@@ -1,0 +1,25 @@
+<h1>Nuestros productos</h1>
+<img src="/img/8.png" alt="mochilafirst" style="max-width: 200px; display: block; margin: 0 auto 2rem;">
+
+<section class="productos">
+  <article class="producto" *ngFor="let producto of products; trackBy: trackById">
+    <img [src]="producto.image" [alt]="producto.name">
+    <h3>{{ producto.name }}</h3>
+    <p>{{ producto.description }}</p>
+    <strong>${{ producto.price }}</strong>
+    <br>
+    <button (click)="abrirModal(producto)">Ver más</button>
+  </article>
+</section>
+
+<!-- MODAL -->
+<div class="modal" *ngIf="mostrarModal">
+  <div class="modal-contenido">
+    <span class="cerrar" (click)="cerrarModal()">&times;</span>
+    <h2>{{ productoSeleccionado?.name }}</h2>
+    <img [src]="productoSeleccionado?.image" [alt]="productoSeleccionado?.name"
+         style="width: 100%; max-height: 300px; object-fit: cover; margin-bottom: 1rem;">
+    <p>{{ productoSeleccionado?.description }}</p>
+    <p><strong>Precio:</strong> ${{ productoSeleccionado?.price }}</p>
+  </div>
+</div>
